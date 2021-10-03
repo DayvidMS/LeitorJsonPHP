@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +8,76 @@
     <title>Index</title>
     <!-- Inclusão do Swal -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<!--Jquery    -->
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <main>
-        <button>Gravar</button>
-        <button>Ler</button>
-        <br>
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" value="">
-        <button onclick="verificaNome();">Incluir</button>
+    <main class="row">
+        <div class="col-md-3">
+            <button onclick="gravar();">Gravar</button>
+            <button>Ler</button>
+            <br>
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" value="">
+            <button onclick="enviarNome();">Incluir</button>
+            <div id="tabelas">
+                <table id="pessoas" class="table" style="border: black;">
+                    <thead>
+                        <th colspan="2" style="background-color: gray; text-align: center;">Pessoas</th>
+                    </thead>
+                    <tbody id="pessoasBody"></tbody>
+                </table>
+            </div>
+        </div>
 
-        <!-- <textarea id="myTextArea" cols=50 rows=10></textarea>
-<button onclick="prettyPrint()">Pretty Print</button> -->
+        <div class="col-5">
+            <textarea id="retornoJson" cols=50 rows=10></textarea>
+        </div>
+
     </main>
-    <script type="text/javascript" src="public/js/JavaScript.js"></script>
+
 </body>
+<!-- Inclui arquivo JavaScript Externo -->
+<script type="text/javascript" src="public/js/JavaScript.js"></script>
+<style>
+    .string {
+        color: rgb(152, 156, 152);
+    }
+
+    .number {
+        color: darkorange;
+    }
+
+    .boolean {
+        color: blue;
+    }
+
+    .null {
+        color: magenta;
+    }
+
+    .key {
+        color: red;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    th,
+    td {
+        padding: 10px 20px;
+        border: 1px solid #000;
+    }
+</style>
+
 </html>
