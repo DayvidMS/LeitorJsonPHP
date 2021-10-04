@@ -1,8 +1,5 @@
 <?php
 ini_set('error_reporting', E_ALL);
-
-
-if ($_POST){
-    echo json_encode('teste');
-
-}
+require __DIR__.'/RouterController.php';
+$json = file_get_contents('php://input');
+new RouterController($_REQUEST, $json);

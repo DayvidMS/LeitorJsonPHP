@@ -27,7 +27,7 @@ function adicionarFilho(idx) {
 
 
 
-    let nomeFiho =  window.prompt("Nome do Filho");
+    let nomeFiho = window.prompt("Nome do Filho");
     jsonObjt.pessoas[idx].filhos.push(nomeFiho);
     // let nome = document.getElementById("nome").value;
 
@@ -100,17 +100,17 @@ function montaTabela(pessoa, idx) {
     // row_2.setAttribute("colspan","2");
     let row_3 = document.createElement('tr');
     // row_3.setAttribute("colspan","2");
-    
+
 
     let row_2_data_1 = document.createElement('td');
-    row_2_data_1.setAttribute("colspan","2");
+    row_2_data_1.setAttribute("colspan", "2");
     row_2_data_1.innerHTML = pessoa.nome;
 
     let row_2_data_2 = document.createElement('td');
     row_2_data_2.appendChild(buttonRemovePai);
 
     let row_3_data_3 = document.createElement('td');
-    row_3_data_3.setAttribute("colspan","3");
+    row_3_data_3.setAttribute("colspan", "3");
     row_3_data_3.appendChild(button);
 
 
@@ -125,25 +125,36 @@ function montaTabela(pessoa, idx) {
     document.getElementById('pessoas').appendChild(table);
 }
 
-function gravar() {
+async function gravar() {
 
     let dados = JSON.stringify(jsonObjt);
     //monta complemento da url
-    let url = `requisicao=gravarDados&pessoas=${dados}`;
+    let url = 'requisicao=gravarDados';
     //url completa para requisição
     let requisicao = `classes/main.php?${url}`;
 
 
     //Requisição
-    fetch(requisicao)
-        .then(response => response.json())
-        .then(data => {
-            alert(data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+    // fetch(requisicao)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         alert(data);
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     });
 
+    const rawResponse = await fetch(requisicao, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: dados
+    });
+    const content = await rawResponse.json();
+
+    console.log(content);
 
     // $.ajax({
     //     method: "POST",
@@ -165,8 +176,7 @@ function deletar(idx) {
     createJSON();
 }
 
-function jsonTextArea()
-{
+function jsonTextArea() {
     document.getElementById("retornoJson").value = JSON.stringify(jsonObjt, undefined, 4);
     document.getElementById("retornoJson").readOnly = true;
 }
